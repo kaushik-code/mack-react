@@ -1,0 +1,33 @@
+image: node:latest
+stages:
+ - build
+ - test
+ - deploy
+build:
+  stage: build
+  before_script:
+    - rm -rf node_modules
+    - rm -rf build/
+  script:
+    - echo "Installing the libraries"
+    - npm install
+    - echo "Building the app"
+    - npm run build
+    - echo "Successfully build"
+    - echo "moving towards test"
+  artifacts:
+    paths:
+     - build/
+test:
+  stage: test
+  image: node
+  script:
+    - echo "Testing the App"
+    - npm install
+    - npm test
+    - echo "Test successfully!"
+deploy:
+  stage: deploy
+  image: tstrohmeier/awscli
+  script:
+    - aws s3 cp build/ s3://firstshubdeploy/ --recursive
