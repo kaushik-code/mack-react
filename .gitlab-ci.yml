@@ -1,0 +1,32 @@
+before_script:
+  - npm install -g n
+
+stages:
+  - build
+  - test
+  - deploy
+
+
+build-job:   
+  stage: build
+  script:
+    - npm install -g n
+    - npm run build
+    
+ 
+test-job:   
+  stage: test
+  script:
+    - npm test
+    - cd /Build && mv */** /.
+  needs: ["build-job"]
+
+
+deploy_production:
+  stage: deploy
+ # environment:
+ #   name: staging
+#  url: example.com
+  script:
+    - ssh ubuntu@ip-172-31-36-148 "cd /home/ubuntu/close-admin && git checkout master && git pull origin master && exit"
+  needs: ["test-job"]
