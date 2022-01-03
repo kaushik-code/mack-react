@@ -3,5 +3,3 @@ build:
   stage: build
   script:
     - npm install
-    - 
-    - 
