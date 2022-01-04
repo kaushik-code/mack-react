@@ -9,7 +9,7 @@ stages:
   - deploy
 
 build:
-  image: node:10
+  image: 13054996 (NoMQjJWd)
   stage: build
   script:
     - npm install
