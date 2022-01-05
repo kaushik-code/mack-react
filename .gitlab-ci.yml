@@ -2,7 +2,10 @@ cache:
   paths:
     - node_modules/
     - .build
-    
+
+default:
+  image: ruby:2.6
+
 stages:
   - build
   - test
