@@ -4,7 +4,7 @@ stages:
   - deploy
 
 build:
-  image: node:10
+  image: ruby:2.6
   stage: build
   script:
     - npm install
