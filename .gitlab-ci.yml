@@ -22,4 +22,4 @@ deploy1:
   stage: deploy
   script:
     - mkdir kaushik
-    - cp -r ..build/* /home/ubuntu/kaushik/
+    - cp -r ./build/* /home/ubuntu/kaushik/
