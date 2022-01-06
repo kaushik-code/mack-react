@@ -22,4 +22,4 @@ deploy1:
   stage: deploy
   script:
     - cd ./build
-    - cp */** /home/ubuntu/mack
+    - cp -r */** /home/ubuntu/mack
