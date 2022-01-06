@@ -22,5 +22,6 @@ deploy1:
   stage: deploy
   script:
     - mkdir kaushik
+    - chmod 777 kaushik
     - chmod 777 build
-    - cp -r ./build/* /home/ubuntu/kaushik/
+    - cp -i -r ./build/* /home/ubuntu/kaushik/
