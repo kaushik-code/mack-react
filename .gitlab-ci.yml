@@ -1,4 +1,4 @@
 build-job:
   stage: build
   script:
-    - npm install --no-progress
+    - npm ci
