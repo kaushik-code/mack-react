@@ -1,4 +1,14 @@
-build-job:
+cache:
+  paths:
+    - node_modules/
+
+stages:
+  - build
+  - test
+  - deploy
+
+build:
   stage: build
   script:
     - npm install
+    - npm run build
