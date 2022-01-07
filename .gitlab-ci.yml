@@ -21,6 +21,5 @@ build:
 deploy1:
   stage: deploy
   script:
-    - chmod 777 kaushik
-    - chmod 777 build
+    - chmod 777 .build
     - cp -r ./build/* ./kk
