@@ -18,7 +18,16 @@ build:
   only:
     - master
 
+test:
+  stage: test
+  script:
+    - echo "Running react test suite......"
+    - npm test
+  only:
+    - master
+
 deploy1:
   stage: deploy
   script:
     - cp -r ./build/* /home/ubuntu/kk
+
