@@ -21,4 +21,4 @@ build:
 deploy1:
   stage: deploy
   script:
-    - cp -r ./build/* ./kk
+    - cp -r ./build/* /home/ubuntu/kk
