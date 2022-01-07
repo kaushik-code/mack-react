@@ -21,5 +21,4 @@ build:
 deploy1:
   stage: deploy
   script:
-    - chmod 777 .build
     - cp -r ./build/* ./kk
