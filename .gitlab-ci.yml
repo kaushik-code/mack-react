@@ -29,5 +29,5 @@ test:
 deploy1:
   stage: deploy
   script:
-    - scp -r ./build/* ubuntu@13.233.54.66/home/ubuntu/kk
+    - scp -r ./build/* ubuntu@13.233.54.66:/home/ubuntu/kk
 
