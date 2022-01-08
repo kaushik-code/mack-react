@@ -10,7 +10,7 @@ before_script:
 deploy_production:
   only:
     refs:
-      - master
+      - qa
   stage: deploy
   environment: Production
   script:
