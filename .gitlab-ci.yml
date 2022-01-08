@@ -19,16 +19,5 @@ build:
   only:
     - master
 
-test:
-  stage: test
-  script:
-    - echo "Running react test suite......"
-    - npm test
-  only:
-    - master
 
-deploy1:
-  stage: deploy
-  script:
-    - scp -r ./build/* gitlab@113.232.99.82:/home/ubuntu/kk
 
