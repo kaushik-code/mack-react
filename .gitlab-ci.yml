@@ -1,46 +1,23 @@
-image: node
+image: node:10
+ 
 cache:
   paths:
     - node_modules/
-
+ 
 before_script:
-  - apt-get update -qq
-  - apt-get install -qq git
-  - "which ssh-agent || ( apt-get install -qq openssh-client )"
-  - eval $(ssh-agent -s)
-  - ssh-add <(echo "$SSH_PRIVATE_KEY")
-  - mkdir -p ~/.ssh
-  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
-
-
-stages:
-  - build
-  - test
-  - deploy
-
-build:
-  stage: build
-  script:
-    - npm install
-    - npm run build
-  artifacts:
-    paths:
-      - ./build
+  - apt-get update -qq && apt-get install -y -qq sshpass rsync
+ 
+deploy_production:
   only:
-    - master
-
-test:
-  stage: test
-  script:
-    - echo "Running react test suite......"
-    - npm test
-  only:
-    - master
-
-deploy1:
+    refs:
+      - master
   stage: deploy
+  environment: Production
   script:
-    - echo "Deploying to ${DEPLOY_SERVER}"
-    - scp -r build/ root@$13.232.99.82:/home/ubuntu/kk/
-
-
+    - yarn install
+    - yarn build
+    - cd build/
+    - ls
+    - sshpass -V
+    - export SSHPASS=$USER_PASS
+    - sshpass -e rsync -r --omit-dir-times -e "ssh -o StrictHostKeyChecking=no" . $USER_NAME@$SERVER_IP:/var/www/my-project
