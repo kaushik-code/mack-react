@@ -20,12 +20,4 @@ build:
     - master
 
 
-deploy:
-  stage: deploy
-  script:
-    - ssh -add < echo "$SSH_PRIVATE_KEY"
-    - ssh -p22 ubuntu@13.232.99.82 "mkdir htdocs/wp-content/themes/_tmp"
-    - scp -P22 -r build/* ubuntu@13.232.99.82:htdocs/wp-content/themes/_tmp
-    - ssh -p22 ubuntu@13.232.99.82 "mv htdocs/wp-content/themes/live htdocs/wp-content/themes/_old && mv htdocs/wp-content/themes/_tmp htdocs/wp-content/themes/live"
-    - ssh -p22 ubuntu@13.232.99.82 "rm -rf htdocs/wp-content/themes/_old"
 
