@@ -29,5 +29,5 @@ test:
 deploy1:
   stage: deploy
   script:
-    - scp -r ./build/* gitlab@10.0.1.67:/home/ubuntu/kk
+    - scp -r ./build/* gitlab@113.232.99.82:/home/ubuntu/kk
 
