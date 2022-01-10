@@ -1,22 +1,62 @@
-image: node
- 
+# This file is a template, and might need editing before it works on your project.
+# This is a sample GitLab CI/CD configuration file that should run without any modifications.
+# It demonstrates a basic 3 stage CI/CD pipeline.
+#
+# A pipeline is composed of independent jobs that run scripts, grouped into stages.
+# Stages run in sequential order, but jobs within stages run in parallel.
+#
+
+
+stages:          # List of stages for jobs, and their order of execution
+  - build
+  - test
+  - deploy
+  - deploy_stage
+
+
 cache:
+  key: ${CI_COMMIT_REF_SLUG}
   paths:
     - node_modules/
- 
-before_script:
-  - apt-get update -qq && apt-get install -y -qq sshpass rsync
- 
-deploy_production:
-  only:
-    refs:
-      - qa
-  stage: deploy
+
+build-job:       # This job runs in the build stage, which runs first.
+  stage: build
+  image: node:latest
+  before_script:
+    - echo "Compiling the code..."
   script:
-    - yarn install
-    - yarn build
-    - cd build/
-    - ls
-    - sshpass -V
-    - export SSHPASS=$USER_PASS
-    - sshpass -e rsync -r --omit-dir-times -e "ssh -o StrictHostKeyChecking=no" . $USER_NAME@$SERVER_IP:/var/www/my-project
+    - bash .build_script.sh
+  after_script:
+    - echo "Compile complete."
+
+  artifacts:
+    paths:
+    - kay.zip
+  tags:
+    - docker
+  only:
+    - develop
+
+deploy-dev-job:      # This job runs in the deploy stage.
+  stage: deploy
+  image: node:latest 
+  variables:
+    SERVER: "$DEV_SERVER"
+  tags:
+    - docker
+  before_script:
+      - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
+      - mkdir -p ~/.ssh
+      - eval `ssh-agent -s`
+      - echo "$PRIVATE_SSH_KEY" | tr -d '\r' | ssh-add -
+      - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+      - ssh-keyscan -t rsa $DEV_SERVER >> ~/.ssh/known_hosts
+  script:
+    - bash .deploy_script.sh
+  after_script:
+    - echo 'bug-101 branch test..'
+
+  tags:
+  - docker
+  only:
+    - develop
