@@ -1,1 +1,1 @@
-ssh git-user@$SERVER "cd /home/ubuntu && touch mack"
+ssh git-user@$SERVER "cd /home/ubuntu && sudo touch mack"
