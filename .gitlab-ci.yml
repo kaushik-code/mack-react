@@ -19,31 +19,13 @@ cache:
   paths:
     - node_modules/
 
-build-job:       # This job runs in the build stage, which runs first.
-  stage: build
-  image: node:latest
-  before_script:
-    - echo "Compiling the code..."
-  script:
-    - bash .build_script.sh
-  after_script:
-    - echo "Compile complete."
-
-  artifacts:
-    paths:
-    - kay.zip
-  tags:
-    - docker
-  only:
-    - develop
-
 deploy-dev-job:      # This job runs in the deploy stage.
   stage: deploy
   image: node:latest 
   variables:
     SERVER: "$DEV_SERVER"
   tags:
-    - docker
+    - myrunner
   before_script:
       - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
       - mkdir -p ~/.ssh
@@ -57,6 +39,6 @@ deploy-dev-job:      # This job runs in the deploy stage.
     - echo 'bug-101 branch test..'
 
   tags:
-  - docker
+  - myrunner
   only:
     - develop
