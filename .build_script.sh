@@ -8,7 +8,7 @@ git checkout branch develop
 npm ci -g
 #npm install express --save
 #npm config set fund false --global
-sudo npm run build
+npm run build
 cd ../
 apt-get update -y
 apt-get install zip -y
