@@ -1,1 +1,1 @@
-ssh ubuntu@$SERVER "touch kaushik"
+ssh git-user@$SERVER "touch kaushik"
