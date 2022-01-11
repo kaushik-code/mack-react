@@ -34,7 +34,6 @@ deploy-dev-job:      # This job runs in the deploy stage.
       - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
       - ssh-keyscan -t rsa $DEV_SERVER >> ~/.ssh/known_hosts
   script:
-    - su git-user
     - bash .deploy_script.sh
   after_script:
     - echo 'bug-101 branch test..'
