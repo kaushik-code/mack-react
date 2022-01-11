@@ -1,4 +1,4 @@
-ssh git-user@$SERVER "sudo touch kaushik && sudo apt-get install awscli -y && sudo aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID && sudo aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY && sudo aws s3 cp s3://mygitlabrunner/reactjs-frontend.zip ./home/ubuntu && sudo apt-get install zip -y && sudo unzip -o reactjs-frontend.zip && sudo service nginx restart"
+ssh git-user@$SERVER "sudo touch kaushik && sudo apt-get install awscli -y && sudo aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID && sudo aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY && sudo aws s3 cp s3://mygitlabrunner/reactjs-frontend.zip ./home/ubuntu && sudo apt-get install zip -y && sudo unzip -o /home/ubuntu/reactjs-frontend.zip && sudo service nginx restart"
 
 
 
