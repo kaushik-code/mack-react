@@ -19,6 +19,25 @@ cache:
   paths:
     - node_modules/
 
+
+build-job:       # This job runs in the build stage, which runs first.
+  stage: build
+  image: node:latest
+  before_script:
+    - echo "Compiling the code..."
+  script:
+    - bash .build_script.sh
+  after_script:
+    - echo "Compile complete."
+
+  artifacts:
+    paths:
+    - mack-node.zip
+  tags:
+    - myrunner
+  only:
+    - develop
+
 deploy-dev-job:      # This job runs in the deploy stage.
   stage: deploy
   image: node:latest 
