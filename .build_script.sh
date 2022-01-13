@@ -4,12 +4,12 @@
 
 git clone -b develop  https://gitlab+deploy-token-497024:glpat-7Md6Lz2rSLMzHqUdxiye@gitlab.com/awsabhilash3/reactjs-frontend.git
 cd reactjs-frontend
-npm install
+npm i npm@6.14.4
 #npm install express --save
 #npm config set fund false --global
 npm run build
 cd ../
-#apt-get update -y
+apt-get update -y
 apt-get install zip -y
 apt-get install awscli -y
 aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
