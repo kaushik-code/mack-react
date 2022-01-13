@@ -5,10 +5,10 @@
 git clone -b develop  https://gitlab+deploy-token-497024:glpat-7Md6Lz2rSLMzHqUdxiye@gitlab.com/awsabhilash3/reactjs-frontend.git
 cd reactjs-frontend
 git checkout branch develop
-sudo npm ci -g
+npm ci
 #npm install express --save
 #npm config set fund false --global
-sudo npm run build
+npm run build
 cd ../
 apt-get update -y
 apt-get install zip -y
