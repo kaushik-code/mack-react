@@ -22,7 +22,7 @@ cache:
 
 build-job:       # This job runs in the build stage, which runs first.
   stage: build
-  image: node:latest
+  image: node:10.19.0
   before_script:
     - echo "Compiling the code..."
   script:
@@ -40,7 +40,7 @@ build-job:       # This job runs in the build stage, which runs first.
 
 deploy-dev-job:      # This job runs in the deploy stage.
   stage: deploy
-  image: node:latest 
+  image: node:10.19.0 
   variables:
     SERVER: "$DEV_SERVER"
   tags:
