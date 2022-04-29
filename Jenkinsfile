@@ -14,14 +14,15 @@ pipeline {
     stage('Build') {
       steps {
         sh 'npm install'
-         sh '<<Build Command>>'
+        sh 'npm audit fix'
+         sh 'npm run build'
       }
     }  
     
             
     stage('Test') {
       steps {
-        sh 'node test'
+        sh 'npm test'
       }
     }
   }
