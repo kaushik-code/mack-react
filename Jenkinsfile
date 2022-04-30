@@ -31,7 +31,6 @@ pipeline {
             sh 'scp ./* jenkins@13.233.197.96:/home/ubuntu/'
         }
     }
-}
 
   }
 }
