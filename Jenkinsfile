@@ -25,5 +25,13 @@ pipeline {
         sh 'npm test'
       }
     }
+    stage ('Deploy') {
+    steps{
+            sh 'ssh jenkins@13.233.197.96'
+            sh 'scp ./* jenkins@13.233.197.96:/home/ubuntu/'
+        }
+    }
+}
+
   }
 }
