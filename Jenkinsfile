@@ -27,7 +27,7 @@ pipeline {
     }
     stage ('Deploy') {
     steps{
-            sh 'scp -r ./build/* jenkins@13.233.197.96:./home/ubuntu'
+            sh 'scp -r ./build/* jenkins@13.233.197.96:/home/ubuntu'
         }
     }
 
